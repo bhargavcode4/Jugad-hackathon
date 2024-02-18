@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Learning Path</title>
+    <style>
+        body {
+            background-color: #d3d3d3; /* Grey background */
+            font-family: 'Times New Roman', Times, serif; /* Times New Roman font */
+        }
+
+        h1 {
+            border: 2px solid black; /* Black double line border for h1 */
+            padding: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            border: 2px solid black; /* Black double line border for h2 */
+            padding: 5px;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        form {
+            border: 2px solid black; /* Black double line border for form */
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        select, button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Your Personalized Learning Path!</h1>
+
+    {% if videos and notes %}
+        <h2>Customized Video Recommendations:</h2>
+        <ul>
+            {% for video in videos %}
+                <li>{{ video }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Customized Note Recommendations:</h2>
+        <ul>
+            {% for note in notes %}
+                <li>{{ note }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>Default Video Recommendations:</h2>
+        <ul>
+            {% for _ in range(3) %}
+                <li>Random Video Placeholder</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Default Note Recommendations:</h2>
+        <ul>
+            {% for _ in range(3) %}
+                <li>Random Note Placeholder</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Simulate User Interaction:</h2>
+    <form method="post" action="/update_performance">
+        <label for="subject">Select Subject:</label>
+        <select name="subject" id="subject">
+            <option value="Algebra">Algebra</option>
+            <option value="Geometry">Geometry</option>
+            <option value="Trigonometry">Trigonometry</option>
+            <option value="Calculus">Calculus</option>
+        </select>
+
+        <label for="interaction_type">Select Interaction Type:</label>
+        <select name="interaction_type" id="interaction_type">
+            <option value="watched_video">Watched Video</option>
+            <option value="read_notes">Read Notes</option>
+        </select>
+
+        <button type="submit">Simulate Interaction</button>
+    </form>
+</body>
+</html>
+
+
